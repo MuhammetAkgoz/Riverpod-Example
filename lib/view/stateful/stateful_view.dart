@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpodexample/core/base/base_stateful_view.dart';
 import 'package:riverpodexample/view/stateful/stateful_view_notifier.dart';
 
-class StatefulView extends ConsumerStatefulWidget {
-  const StatefulView({Key? key}) : super(key: key);
+class StatefulView extends BaseStatefulWidget {
+  const StatefulView({super.key});
 
   @override
-  ConsumerState<StatefulView> createState() => _StatefulViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _StatefulViewState();
 }
 
 class _StatefulViewState extends BaseStateView<StatefulView, StatefulNotifier, StatefulStates> {

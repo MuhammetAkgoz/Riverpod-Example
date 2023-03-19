@@ -13,8 +13,12 @@ abstract class BaseStatefulNotifier<S> extends StateNotifier<S> {
   }
 }
 
+abstract class BaseStatefulWidget extends ConsumerStatefulWidget {
+  const BaseStatefulWidget({super.key});
+}
+
 /// [BaseStateView] corresponds to [StatefulWidget]
-abstract class BaseStateView<T extends ConsumerStatefulWidget, N extends BaseStatefulNotifier<S>, S extends Equatable>
+abstract class BaseStateView<T extends BaseStatefulWidget, N extends BaseStatefulNotifier<S>, S extends Equatable>
     extends ConsumerState<T> {
   late final StateNotifierProvider<N, S> _stateNotifierProvider;
 
