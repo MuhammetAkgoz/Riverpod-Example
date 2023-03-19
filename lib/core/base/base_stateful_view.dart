@@ -22,14 +22,15 @@ abstract class BaseStatefulWidget extends ConsumerStatefulWidget {
 /// [BaseStateView] corresponds to [StatefulWidget]
 abstract class BaseStateView<T extends BaseStatefulWidget, N extends BaseStatefulNotifier<S>, S extends Equatable>
     extends ConsumerState<T> {
-  late final StateNotifierProvider<N, S> _stateNotifierProvider;
+  late final StateNotifierProvider<N, S> _provider;
 
   /// [notifier] of state class
+  @protected
   @mustCallSuper
   final N notifier;
 
   BaseStateView({required this.notifier}) {
-    _stateNotifierProvider = StateNotifierProvider<N, S>((ref) {
+    _provider = StateNotifierProvider<N, S>((ref) {
       return notifier;
     });
   }
@@ -52,7 +53,8 @@ abstract class BaseStateView<T extends BaseStatefulWidget, N extends BaseStatefu
     notifier.didUpdateWidget(oldWidget);
   }
 
-  void listen(void Function(S? previous, S next) listener) => ref.listen(_stateNotifierProvider, listener);
-  S get state => ref.watch(_stateNotifierProvider);
-  N get executive => ref.read(_stateNotifierProvider.notifier);
+  StateNotifierProvider<N, S> get provider => _provider;
+  void listen(void Function(S? previous, S next) listener) => ref.listen(_provider, listener);
+  S get state => ref.watch(_provider);
+  N get executive => ref.read(_provider.notifier);
 }
