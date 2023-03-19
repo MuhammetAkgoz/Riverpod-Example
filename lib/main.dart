@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpodexample/example_view.dart';
+import 'package:riverpodexample/view/stateful/stateful_view.dart';
 
 void main() {
   runApp(
@@ -19,7 +19,7 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ExampleView(),
+      home: StatefulView(),
     );
   }
 }
