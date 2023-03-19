@@ -11,6 +11,8 @@ abstract class BaseStatefulNotifier<S> extends StateNotifier<S> {
   void dispose() {
     super.dispose();
   }
+
+  void didUpdateWidget(Widget oldWidget) {}
 }
 
 abstract class BaseStatefulWidget extends ConsumerStatefulWidget {
@@ -40,7 +42,14 @@ abstract class BaseStateView<T extends BaseStatefulWidget, N extends BaseStatefu
 
   @override
   void dispose() {
+    super.dispose();
     notifier.dispose();
+  }
+
+  @override
+  void didUpdateWidget(T oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    notifier.didUpdateWidget(oldWidget);
   }
 
   void listen(void Function(S? previous, S next) listener) => ref.listen(_stateNotifierProvider, listener);
